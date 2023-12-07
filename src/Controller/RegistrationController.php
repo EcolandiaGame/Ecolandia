@@ -41,4 +41,20 @@ class RegistrationController extends AbstractController
             'registrationForm' => $form->createView(),
         ]);
     }
+    #[Route('/', name: 'app_index')]
+    public function index(): Response
+    {
+        return $this->render('index.html.twig', [
+            
+        ]);
+    }
+    #[Route('/jouer', name: 'app_jouer')]
+    public function indexjouer(): Response
+    {
+        $isconnected = $this->get('security.context')->getToken()->getUser();
+        $view = $isconnected?'jouer.html.twig':'login.html.twig';
+        return $this->render($view, [
+            
+        ]);
+    }
 }
