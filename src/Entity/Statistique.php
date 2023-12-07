@@ -103,19 +103,6 @@ class Statistique
         return $this;
     }
 
-    public function removeInfluent(Influe $influent): static
-    {
-        if ($this->influent->removeElement($influent)) {
-            // set the owning side to null (unless already changed)
-            if ($influent->getStatistique() === $this) {
-                $influent->setStatistique(null);
-            }
-        }
-
-        return $this;
-    }
-
-
     public function __toString(): string
     {
         return $this->Se_nomme;
