@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
     public function indexjouer(): Response
     {
         $isconnected = $this->get('security.context')->getToken()->getUser();
-        $view = $isconnected?'jouer.html.twig':'login.html.twig';
+        $view = $isconnected ? 'jouer.html.twig' : 'login.html.twig';
         return $this->render($view, [
             
         ]);
