@@ -16,7 +16,15 @@ class EvenementController extends AbstractController
         ]);
     }
 
-    public function getEvenement() : Response{
-        findOneBy
+    #[Route('/jouer', name:'app_evenement')]
+    public function getEvenement(EvenementRepository $evenementRepository, EntityManager $entityManager) : Response{
+        $id = random_int($evenementRepository->getMinId(), $evenementRepository->getMaxId());
+        
+        $repository = $entityManager->getRepository(Evenement::class);
+        $evenement = $repository->find($id);
+
+        return $this->render('jouer/index.html.twig', [
+            'evenement' => $evenement
+        ]);
     }
 }

@@ -21,6 +21,22 @@ class EvenementRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenement::class);
     }
 
+    public function getMinId(){
+        return $this->createQueryBuilder('e')
+         ->orderBy('e.id', 'ASC')
+         ->setMaxResults(1)
+         ->getQuery()
+         ->getResult();
+    }
+
+    public function getMaxId(){
+        return $this->createQueryBuilder('e')
+         ->orderBy('e.id', 'DESC')
+         ->setMaxResults(1)
+         ->getQuery()
+         ->getResult();
+    }
+
 
 //    /**
 //     * @return Evenement[] Returns an array of Evenement objects
