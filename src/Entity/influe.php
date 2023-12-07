@@ -3,8 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\InflueRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InflueRepository::class)]
@@ -18,17 +16,11 @@ class influe
     #[ORM\Column(nullable: true)]
     private ?int $change_points = null;
 
-    #[ORM\OneToMany(mappedBy: 'influe', targetEntity: Choix::class)]
-    private Collection $choix;
+    #[ORM\ManyToOne(inversedBy: 'influent')]
+    private ?Statistique $statistique = null;
 
-    #[ORM\OneToMany(mappedBy: 'influe', targetEntity: Statistique::class)]
-    private Collection $statistiques;
-
-    public function __construct()
-    {
-        $this->choix = new ArrayCollection();
-        $this->statistiques = new ArrayCollection();
-    }
+    #[ORM\ManyToOne(inversedBy: 'influent')]
+    private ?Choix $choix = null;
 
     public function getId(): ?int
     {
@@ -47,62 +39,26 @@ class influe
         return $this;
     }
 
-    /**
-     * @return Collection<int, Choix>
-     */
-    public function getChoix(): Collection
+    public function getStatistique(): ?Statistique
+    {
+        return $this->statistique;
+    }
+
+    public function setStatistique(?Statistique $statistique): static
+    {
+        $this->statistique = $statistique;
+
+        return $this;
+    }
+
+    public function getChoix(): ?Choix
     {
         return $this->choix;
     }
 
-    public function addChoix(Choix $choix): static
+    public function setChoix(?Choix $choix): static
     {
-        if (!$this->choix->contains($choix)) {
-            $this->choix->add($choix);
-            $choix->setInflue($this);
-        }
-
-        return $this;
-    }
-
-    public function removeChoix(Choix $choix): static
-    {
-        if ($this->choix->removeElement($choix)) {
-            // set the owning side to null (unless already changed)
-            if ($choix->getInflue() === $this) {
-                $choix->setInflue(null);
-            }
-        }
-
-        return $this;
-    }
-
-    /**
-     * @return Collection<int, Statistique>
-     */
-    public function getStatistiques(): Collection
-    {
-        return $this->statistiques;
-    }
-
-    public function addStatistique(Statistique $statistique): static
-    {
-        if (!$this->statistiques->contains($statistique)) {
-            $this->statistiques->add($statistique);
-            $statistique->setInflue($this);
-        }
-
-        return $this;
-    }
-
-    public function removeStatistique(Statistique $statistique): static
-    {
-        if ($this->statistiques->removeElement($statistique)) {
-            // set the owning side to null (unless already changed)
-            if ($statistique->getInflue() === $this) {
-                $statistique->setInflue(null);
-            }
-        }
+        $this->choix = $choix;
 
         return $this;
     }

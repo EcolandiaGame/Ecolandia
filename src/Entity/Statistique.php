@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\StatistiqueRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: StatistiqueRepository::class)]
@@ -22,8 +24,13 @@ class Statistique
     #[ORM\ManyToOne(inversedBy: 'statistiques')]
     private ?Partie $partie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'statistiques')]
-    private ?influe $influe = null;
+    #[ORM\OneToMany(mappedBy: 'statistique', targetEntity: Influe::class)]
+    private Collection $influent;
+
+    public function __construct()
+    {
+        $this->influent = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -66,14 +73,32 @@ class Statistique
         return $this;
     }
 
-    public function getInflue(): ?influe
+    /**
+     * @return Collection<int, Influe>
+     */
+    public function getInfluent(): Collection
     {
-        return $this->influe;
+        return $this->influent;
     }
 
-    public function setInflue(?influe $influe): static
+    public function addInfluent(Influe $influent): static
     {
-        $this->influe = $influe;
+        if (!$this->influent->contains($influent)) {
+            $this->influent->add($influent);
+            $influent->setStatistique($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInfluent(Influe $influent): static
+    {
+        if ($this->influent->removeElement($influent)) {
+            // set the owning side to null (unless already changed)
+            if ($influent->getStatistique() === $this) {
+                $influent->setStatistique(null);
+            }
+        }
 
         return $this;
     }
