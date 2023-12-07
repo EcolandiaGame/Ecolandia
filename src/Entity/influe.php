@@ -106,4 +106,9 @@ class influe
 
         return $this;
     }
+
+    public function __toString(): string
+    {
+        return $this->id . ' ' . $this->change_points;
+    }
 }
