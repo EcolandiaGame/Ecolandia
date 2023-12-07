@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ChoixRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -20,11 +22,16 @@ class Choix
     #[ORM\ManyToOne(inversedBy: 'choix')]
     private ?Evenement $evenement = null;
 
-    #[ORM\ManyToOne(inversedBy: 'choix')]
-    private ?influe $influe = null;
-
     #[ORM\ManyToOne(inversedBy: 'LesChoix')]
     private ?Explication $explication = null;
+
+    #[ORM\OneToMany(mappedBy: 'choix', targetEntity: Influe::class)]
+    private Collection $influent;
+
+    public function __construct()
+    {
+        $this->influent = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -55,18 +62,6 @@ class Choix
         return $this;
     }
 
-    public function getInflue(): ?influe
-    {
-        return $this->influe;
-    }
-
-    public function setInflue(?influe $influe): static
-    {
-        $this->influe = $influe;
-
-        return $this;
-    }
-
     public function getExplication(): ?Explication
     {
         return $this->explication;
@@ -75,6 +70,36 @@ class Choix
     public function setExplication(?Explication $explication): static
     {
         $this->explication = $explication;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Influe>
+     */
+    public function getInfluent(): Collection
+    {
+        return $this->influent;
+    }
+
+    public function addInfluent(Influe $influent): static
+    {
+        if (!$this->influent->contains($influent)) {
+            $this->influent->add($influent);
+            $influent->setChoix($this);
+        }
+
+        return $this;
+    }
+
+    public function removeInfluent(Influe $influent): static
+    {
+        if ($this->influent->removeElement($influent)) {
+            // set the owning side to null (unless already changed)
+            if ($influent->getChoix() === $this) {
+                $influent->setChoix(null);
+            }
+        }
 
         return $this;
     }
