@@ -17,17 +17,14 @@ class Choix
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $libelle = null;
 
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $explication = null;
-
-    #[ORM\Column(type: Types::TEXT, nullable: true)]
-    private ?string $source = null;
-
     #[ORM\ManyToOne(inversedBy: 'choix')]
     private ?Evenement $evenement = null;
 
     #[ORM\ManyToOne(inversedBy: 'choix')]
     private ?influe $influe = null;
+
+    #[ORM\ManyToOne(inversedBy: 'LesChoix')]
+    private ?Explication $explication = null;
 
     public function getId(): ?int
     {
@@ -42,30 +39,6 @@ class Choix
     public function setLibelle(?string $libelle): static
     {
         $this->libelle = $libelle;
-
-        return $this;
-    }
-
-    public function getExplication(): ?string
-    {
-        return $this->explication;
-    }
-
-    public function setExplication(?string $explication): static
-    {
-        $this->explication = $explication;
-
-        return $this;
-    }
-
-    public function getSource(): ?string
-    {
-        return $this->source;
-    }
-
-    public function setSource(?string $source): static
-    {
-        $this->source = $source;
 
         return $this;
     }
@@ -90,6 +63,18 @@ class Choix
     public function setInflue(?influe $influe): static
     {
         $this->influe = $influe;
+
+        return $this;
+    }
+
+    public function getExplication(): ?Explication
+    {
+        return $this->explication;
+    }
+
+    public function setExplication(?Explication $explication): static
+    {
+        $this->explication = $explication;
 
         return $this;
     }
