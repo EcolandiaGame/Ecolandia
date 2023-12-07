@@ -6,7 +6,7 @@ use App\Repository\InflueRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: InflueRepository::class)]
-class Influe
+class influe
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
