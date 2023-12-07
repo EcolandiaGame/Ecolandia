@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PartieRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PartieRepository::class)]
@@ -26,6 +27,9 @@ class Partie
 
     #[ORM\ManyToOne(inversedBy: 'parties')]
     private ?Arriver $arrivers = null;
+
+    #[ORM\Column(type: Types::DATE_MUTABLE, nullable: true)]
+    private ?\DateTimeInterface $date_partie = null;
 
     public function __construct()
     {
@@ -99,6 +103,18 @@ class Partie
     public function setArrivers(?Arriver $arrivers): static
     {
         $this->arrivers = $arrivers;
+
+        return $this;
+    }
+
+    public function getDatePartie(): ?\DateTimeInterface
+    {
+        return $this->date_partie;
+    }
+
+    public function setDatePartie(?\DateTimeInterface $date_partie): static
+    {
+        $this->date_partie = $date_partie;
 
         return $this;
     }
