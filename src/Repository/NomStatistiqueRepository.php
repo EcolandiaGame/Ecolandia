@@ -21,6 +21,8 @@ class NomStatistiqueRepository extends ServiceEntityRepository
         parent::__construct($registry, NomStatistique::class);
     }
 
+    
+
 //    /**
 //     * @return NomStatistique[] Returns an array of NomStatistique objects
 //     */
