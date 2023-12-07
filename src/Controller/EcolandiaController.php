@@ -14,4 +14,11 @@ class EcolandiaController extends AbstractController
         return $this->render('ecolandia/index.html.twig',
         );
     }
+
+    #[Route('/ecolandia/game', name: 'app_game')]
+    public function game(): Response
+    {
+        return $this->render('ecolandia/game.html.twig',
+        );
+    }
 }
