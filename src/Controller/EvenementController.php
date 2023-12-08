@@ -8,6 +8,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\EvenementRepository;
 use App\Repository\StatistiqueRepository;
 use App\Repository\PartieRepository;
+use App\Repository\ChoixRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Evenenement;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -22,21 +23,26 @@ class EvenementController extends AbstractController
         ]);
     }
 
-    #[Route('/ecolandia/game', name:'app_game')]
-    public function getEvenement(EvenementRepository $evenementRepository,EntityManagerInterface $entityManager,StatistiqueRepository $statistiqueRepository, PartieRepository $partieRepository) : Response{
-        $id = random_int($evenementRepository->getMinId()->getId(), $evenementRepository->getMaxId()->getId());
-        $user = $this->security->getUser();
-        $partie = $partieRepository->getByUser($user);
-
-        return $this->render('ecolandia/game.html.twig', [
-            'evenement' => $evenementRepository->find($id),
-            'stats' => $statistiqueRepository->findByPartie($partie)
-        ]);
-    }
-
     public function __construct(
         private Security $security,
     ){
     }
+
+    #[Route('/ecolandia/game', name:'app_game')]
+    public function getEvenement(EvenementRepository $evenementRepository,EntityManagerInterface $entityManager,StatistiqueRepository $statistiqueRepository, PartieRepository $partieRepository, ChoixRepository $choixRepository) : Response{
+        $id = random_int($evenementRepository->getMinId()->getId(), $evenementRepository->getMaxId()->getId());
+        $user = $this->security->getUser();
+        $partie = $partieRepository->getByUser($user);
+        $evenement = $evenementRepository->find($id);
+        
+
+        return $this->render('ecolandia/game.html.twig', [
+            'evenement' => $evenement,
+            'stats' => $statistiqueRepository->findByPartie($partie),
+            'choix' => $choixRepository->getByUser($evenement)
+        ]);
+    }
+
+    
 
 }

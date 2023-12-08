@@ -21,6 +21,15 @@ class ChoixRepository extends ServiceEntityRepository
         parent::__construct($registry, Choix::class);
     }
 
+    public function getByEvent($event){
+        return $this->createQueryBuilder('c')
+            ->andWhere('c.evenement = :evenement')
+            ->setParameter('evenement', $event)
+            ->orderBy('c.id','ASC')
+            ->getQuery()
+            ->getResult();
+    }
+
 //    /**
 //     * @return Choix[] Returns an array of Choix objects
 //     */
