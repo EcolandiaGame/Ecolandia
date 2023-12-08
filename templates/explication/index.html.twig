@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/explication.css') }}" />
+
+{% endblock %}
+{% block title %}Hello ExplicationController!{% endblock %}
+
+{% block body %}
+<div class="explication">
+    <div class="item">
+        <h1>Explications:</h1>  
+        
+        <p>{{explication.description}}</p>
+        <p>Source: {{explication.source}}</p>
+
+
+            <a href="{{path('app_verif')}}">Question suivante</a>
+
+    </div>
+
+</div>
+{% endblock %}

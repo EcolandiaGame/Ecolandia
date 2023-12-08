@@ -45,7 +45,7 @@ class ExplicationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
-    public function  findExplication($nbr)
+    public function  findOneByExplication($nbr)
     {
         return $this->createQueryBuilder('e')
             ->andWhere('e.id = :nbr')
@@ -54,4 +54,5 @@ class ExplicationRepository extends ServiceEntityRepository
             ->getOneOrNullResult()
         ;
     }
+
 }
