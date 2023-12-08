@@ -79,7 +79,11 @@ class EcolandiaController extends AbstractController
 
 
 
+
         $eventarray = $session->get('eventarray');
+        if ($indice_after == count($eventarray)){
+            $indice_after = 0;
+        }
 
 
         $id = $eventarray[$indice_after]->getId();
