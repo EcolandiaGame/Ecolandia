@@ -11,13 +11,15 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class ChoixController extends AbstractController
 {
-    #[Route('/explication/{nbr}', name: 'app_explication')]
+    #[Route('/explication/{nbr}', name: 'app_explication', methods: ['GET'])]
     public function index(int $nbr , ChoixRepository $choixRepository, ExplicationRepository $explicationRepository, PartieRepository $partieRepository): Response
     {
         $choix = $choixRepository->findById($nbr);
         $explication = $explicationRepository->findByChoix($choix);
         $partie = $partieRepository->getByUser($this->security->getUser());
         $partie->setScore($partie->getScore + 1);
+
+        
 
 
         return $this->render('explication/index.html.twig', [

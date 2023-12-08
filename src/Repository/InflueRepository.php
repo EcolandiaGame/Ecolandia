@@ -21,6 +21,14 @@ class InflueRepository extends ServiceEntityRepository
         parent::__construct($registry, Influe::class);
     }
 
+    public function getByChoix($choix){
+        return $this->createQueryBuilder('i')
+            ->andWhere('i.choix = :choix')
+            ->setParameter('choix', $choix)
+            ->getQuery()
+            ->getResutlt();
+    }
+
 //    /**
 //     * @return Influe[] Returns an array of Influe objects
 //     */
