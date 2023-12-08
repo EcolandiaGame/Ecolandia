@@ -7,7 +7,7 @@
 
 {% block body %}
     <section id="top-page">
-        <h2>Année : </h2>
+        <h2>Année : {{partie[0].score}}</h2>
 
     {% block stat %}
     <div class="stats" id="economie" data-pourcentage={{stats[0].points * 10}}>
@@ -29,8 +29,9 @@
     {% endblock %}
 
     </section>
-    <h2>{{evenement.libelle}}</h2>
+
     <section id="middle-page">
+        <h2>{{evenement.libelle}}</h2>
         
 
         <div id="card-event">
@@ -55,6 +56,14 @@
     </section>
 
     <section id="bottom-page">
+
+        <button>
+            <a href="/explication/{{ choix[0].id }}">{{ choix[0].libelle }}</a>
+        </button>
+
+        <button>
+            <a href="/explication/{{ choix[1].id }}">{{ choix[1].libelle }}</a>
+        </button>
 
     </section>
 

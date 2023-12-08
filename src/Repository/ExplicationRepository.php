@@ -45,4 +45,12 @@ class ExplicationRepository extends ServiceEntityRepository
 //            ->getOneOrNullResult()
 //        ;
 //    }
+    public function  findByChoix($choix)
+    {
+        return $this->createQueryBuilder('e')
+            ->andWhere('e.choix = :choix')
+            ->setParameter('choix', $choix)
+            ->getQuery()
+            ->getResult();
+    }
 }
