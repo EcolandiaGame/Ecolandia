@@ -1,19 +1,14 @@
 {% extends '/ecolandia/game.html.twig' %}
 {% block stat %}
 <div id="stat-div">
-
-            <div class="stats">
-                <h1>{{stats[0].points}}</h1>
-
-            </div>
-            <div class="stats">
-                <h1>{{stats[1].points}}</h1>
-
-            </div>
-            <div class="stats">
-                <h1>{{stats[2].points}}</h1>
-
-            </div>
-
+            <div class="stats" id="ecologie" data-pourcentage="100">
+            <i class="fa-solid fa-leaf"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
+        <div class="stats" id="social" data-pourcentage="100">
+            <i class="fa-solid fa-person"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
         </div>
 {% endblock %}
