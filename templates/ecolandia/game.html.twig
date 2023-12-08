@@ -29,8 +29,9 @@
     {% endblock %}
 
     </section>
-    <h2>{{evenement.libelle}}</h2>
+
     <section id="middle-page">
+        <h2>{{evenement.libelle}}</h2>
         
 
         <div id="card-event">
@@ -55,6 +56,14 @@
     </section>
 
     <section id="bottom-page">
+
+        <button>
+            <a href="/explication/{{ choix[0].id }}">{{ choix[0].libelle }}</a>
+        </button>
+
+        <button>
+            <a href="/explication/{{ choix[1].id }}">{{ choix[1].libelle }}</a>
+        </button>
 
     </section>
 

@@ -33,7 +33,7 @@
 
     width: 60%;
     height: 90%;
-    background-color: red;
+    background-color: #7c7878;
     border-radius: 20px;
 
     display: flex;
@@ -66,7 +66,7 @@
     right: -10px;
     height: 100%;
     width: 8px;
-    background-color: #ccc;
+    background-color: #7c7878;
     border-radius: 25px;
     z-index: 1;
 }
@@ -81,6 +81,35 @@
     background-color: #ccc;
     border-radius: 25px;
 
+}
+
+#bottom-page{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#bottom-page > button{
+    width: 300px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #7c7878;
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+#bottom-page > button:hover{
+    background-color: #40e72e;
+}
+
+#bottom-page > button > a{
+    text-decoration: none;
+    color: white;
 }
 
 
