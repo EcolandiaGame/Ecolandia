@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Repository\PartieRepository;
 use App\Repository\StatistiqueRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -51,10 +52,7 @@ class EcolandiaController extends AbstractController
         );
     }
 
-    public function __construct(
-        private RequestStack $requestStack
-    ){
-    }
+
 
     #[Route('/ecolandia/verif', name: 'app_verif')]
     public function verif(PartieRepository $partieRepository, StatistiqueRepository $statistiqueRepository, RequestStack $requestStack): Response
