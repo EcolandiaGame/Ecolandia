@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ExplicationController!{% endblock %}
+
+{% block body %}
+<div class="explication">
+    <h1>Explications:</h1>   
+    <p>{{explication.description}}</p>
+    <p>Source: {{explication.source}}</p>
+
+</div>
+{% endblock %}
