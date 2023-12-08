@@ -57,10 +57,9 @@
 
     <section id="bottom-page">
 
-        <a href="/explication/{{ choix[0].id }}">{{ choix[0].libelle }}</a>
-        <a href="/explication/{{ choix[1].id }}">{{ choix[1].libelle }}</a>
+        <a href="{{ path('app_explication',{'nbr': choix[0].id}) }}">{{ choix[0].libelle }}</a>
+        <a href="{{ path('app_explication',{'nbr': choix[1].id}) }}">{{ choix[1].libelle }}</a>
     </section>
-
 
 
 {% endblock %}

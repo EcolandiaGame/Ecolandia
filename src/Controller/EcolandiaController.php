@@ -66,7 +66,6 @@ class EcolandiaController extends AbstractController
     public function verif(PartieRepository $partieRepository, StatistiqueRepository $statistiqueRepository, RequestStack $requestStack, EvenementRepository $evenementRepository, ChoixRepository $choixRepository): Response
     {
 
-
         $session = $this->requestStack->getSession();
         $session->set('indiceevent', 0);
         $indice = $session->get('indiceevent');

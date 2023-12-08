@@ -26,7 +26,7 @@ class InflueRepository extends ServiceEntityRepository
             ->andWhere('i.choix = :choix')
             ->setParameter('choix', $choix)
             ->getQuery()
-            ->getResutlt();
+            ->getResult();
     }
 
 //    /**

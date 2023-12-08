@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Repository\StatistiqueRepository;
 use App\Repository\InflueRepository;
+use Doctrine\ORM\EntityManagerInterface;
 
 
 class ChoixController extends AbstractController
@@ -25,7 +26,7 @@ class ChoixController extends AbstractController
 
 
     #[Route('/explication/{nbr}', name: 'app_explication', methods: ['GET'])]
-    public function index(int $nbr , ChoixRepository $choixRepository, ExplicationRepository $explicationRepository, PartieRepository $partieRepository , RequestStack $requestStack, StatistiqueRepository $statistiqueRepository, InflueRepository $influeRepository): Response
+    public function index(int $nbr , ChoixRepository $choixRepository, ExplicationRepository $explicationRepository, PartieRepository $partieRepository , RequestStack $requestStack, StatistiqueRepository $statistiqueRepository, InflueRepository $influeRepository, EntityManagerInterface $entityManager ): Response
     {
          $choix = $choixRepository->findBy(['id' => $nbr]);
          $explication = $choix[0]->getExplication();
@@ -36,8 +37,12 @@ class ChoixController extends AbstractController
         $stats = $statistiqueRepository->findByPartie($partie);
 
         for($i=0;$i<3;$i++){
-            $stats[$i]->setPoints($stats[$i]->getPoints() + $influeRepository->getByChoix($choixRepository->getOnById($_GET[$id])));
+            $stats[$i]->setPoints($stats[$i]->getPoints() + $influeRepository->getByChoix($choixRepository->findOneById($nbr))[0]->getChangePoints());
+            
         }
+
+        $entityManager->flush();
+
 
 
 
