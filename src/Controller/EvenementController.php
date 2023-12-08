@@ -49,6 +49,13 @@ class EvenementController extends AbstractController
         $session = $this->requestStack->getSession();
         $session->set('indiceevent', $indiceevent);
         $session->set('eventarray', $eventarray);
+
+        $indice = $session->get('indiceevent');
+        $eventarray = $session->get('eventarray');
+
+        $id = $eventarray[$indice]->getId();
+
+        $evenement = $evenementRepository->find($id);
         
         return $this->render('ecolandia/game.html.twig', [
             'evenement' => $evenement,
