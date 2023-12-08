@@ -5,8 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Doctrine\ORM\EntityManagerInterface;
-use App\Entity\Utilisateur;
+
 
 class PartieController extends AbstractController
 {
@@ -18,13 +17,6 @@ class PartieController extends AbstractController
         ]);
     }
 
-    public function createPartie(Utilisateur $utilisateur, EntityManagerInterface $entityManager){
-        $partie = new Partie();
-        $partie-> setUtilisateur($utilisateur);
-        $partie-> setDatePartie(date(now()));
-        
-        $entityManager->persist($partie);
-        $entityManager->flush();
-    }
+    
 
 }
