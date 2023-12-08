@@ -2,8 +2,15 @@
 
 namespace App\Controller;
 
+use App\Entity\Partie;
+use App\Entity\Statistique;
+use App\Entity\Utilisateur;
+use App\Repository\ChoixRepository;
+use App\Repository\EvenementRepository;
+use App\Repository\NomStatistiqueRepository;
 use App\Repository\PartieRepository;
 use App\Repository\StatistiqueRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Response;
@@ -23,6 +30,7 @@ class EcolandiaController extends AbstractController
 
     public function __construct(
         private Security $security,
+        private RequestStack $requestStack
     ){
     }
 
@@ -55,10 +63,12 @@ class EcolandiaController extends AbstractController
 
 
     #[Route('/ecolandia/verif', name: 'app_verif')]
-    public function verif(PartieRepository $partieRepository, StatistiqueRepository $statistiqueRepository, RequestStack $requestStack): Response
+    public function verif(PartieRepository $partieRepository, StatistiqueRepository $statistiqueRepository, RequestStack $requestStack, EvenementRepository $evenementRepository, ChoixRepository $choixRepository): Response
     {
 
+
         $session = $this->requestStack->getSession();
+        $session->set('indiceevent', 0);
         $indice = $session->get('indiceevent');
 
 
@@ -66,6 +76,15 @@ class EcolandiaController extends AbstractController
 
         $session->set('indiceevent', $indice+1);
         $indice_after = $session->get('indiceevent');
+
+
+
+        $eventarray = $session->get('eventarray');
+
+
+        $id = $eventarray[$indice_after]->getId();
+        $evenement = $evenementRepository->find($id);
+
 
 
 
@@ -83,6 +102,13 @@ class EcolandiaController extends AbstractController
 
 
         return $this->render('ecolandia/game.html.twig',
+            [
+                "evenement" => $evenement,
+                "stats" => $statistiqueRepository->findByPartie($PartieActuelleId),
+                "partie" => $PartieActuelleId,
+                "choix" => $choixRepository->getByEvent($evenement),
+
+            ]
         );
     }
 }
