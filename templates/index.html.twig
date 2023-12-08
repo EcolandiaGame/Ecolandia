@@ -80,15 +80,47 @@
         4px 4px 5px 0px rgba(0,0,0,.1);
         outline: none;
         }
+    ul{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+    a{
+
+        width: fit-content;
+        height: 50px;
+        border-radius: 10px;
+        background-color: #1c6cbb;
+        border: none;
+        color: white;
+        font-size: 1.5rem;
+        font-weight: bold;
+        cursor: pointer;
+        text-decoration: none;
+    ;
+    }
+    #header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+    }
+
+    #header > a{
+        text-decoration: none;
+    }
 </style>
 
 <div class="container">
 
     <div id="header" class="flex">
-        <ul id="ul-login" class="flex">
-            <button> <a href=" {{ path('app_login') }} "> login </a> </button> 
-            <button> <a href=" {{ path('app_register') }} " > register </a> </button>  
-        </ul>
+
+            {% if is_granted("IS_AUTHENTICATED_FULLY") %}
+                <a href=" {{ path('app_logout') }} "> logout </a>
+            {% else %}
+                <a  href=" {{ path('app_login') }} "> login </a>
+                <a  href=" {{ path('app_register') }} " > register </a>
+            {% endif %}
+
         <div id="titre">
             <h1 style="color:white;"> Ecolandia </h1>
         </div>
