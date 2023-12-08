@@ -23,11 +23,14 @@ class EvenementController extends AbstractController
     }
 
     #[Route('/ecolandia/game', name:'app_game')]
-    public function getEvenement(EvenementRepository $evenementRepository,EntityManagerInterface $entityManager) : Response{
+    public function getEvenement(EvenementRepository $evenementRepository,EntityManagerInterface $entityManager,StatistiqueRepository $statistiqueRepository, PartieRepository $partieRepository) : Response{
         $id = random_int($evenementRepository->getMinId()->getId(), $evenementRepository->getMaxId()->getId());
+        $user = $this->security->getUser();
+        $partie = $partieRepository->getByUser($user);
 
         return $this->render('ecolandia/game.html.twig', [
             'evenement' => $evenementRepository->find($id),
+            'stats' => $statistiqueRepository->findByPartie($partie)
         ]);
     }
 
@@ -36,12 +39,4 @@ class EvenementController extends AbstractController
     ){
     }
 
-    #[Route('/ecolandia/game', name:'app_game')]
-    public function getStats(StatistiqueRepository $statistiqueRepository, PartieRepository $partieRepository) : Response {
-        $user = $this->security->getUser();
-        $partie = $partieRepository->getByUser($user);
-        return $this->render('ecolandia/stat.html.twig', [
-            'stats' => $statistiqueRepository->findByPartie(3)
-        ]);
-    }
 }
