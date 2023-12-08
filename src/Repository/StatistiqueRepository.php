@@ -21,6 +21,26 @@ class StatistiqueRepository extends ServiceEntityRepository
         parent::__construct($registry, Statistique::class);
     }
 
+    /*
+    public function findByPartie($utilisateur)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('partie_id = select(max(id) from partie where utilisateur_id = :utilisateur')
+            ->setParameters('utilisateur', $utilisateur)
+            ->getQuery()
+            ->getResult();
+    }
+    */
+    public function findByPartie($partie)
+    {
+        return $this->createQueryBuilder('s')
+            ->andWhere('s.partie = :partie')
+            ->setParameter('partie', $partie)
+            ->getQuery()
+            ->getResult();
+    }
+
+
 //    /**
 //     * @return Statistique[] Returns an array of Statistique objects
 //     */

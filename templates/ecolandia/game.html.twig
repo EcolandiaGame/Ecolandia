@@ -1,1 +1,67 @@
-<h1>Test</h1>
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/game.css') }}" />
+
+{% endblock %}
+
+
+{% block body %}
+    <section id="top-page">
+        <h2>Année : </h2>
+
+    {% block stat %}
+    <div class="stats" id="economie" data-pourcentage={{stats[0].points * 10}}>
+            <i class="fa-solid fa-euro-sign"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+
+        </div>
+            <div class="stats" id="ecologie" data-pourcentage={{stats[1].points * 10}}>
+            <i class="fa-solid fa-leaf"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
+        <div class="stats" id="social" data-pourcentage={{stats[2].points * 10}}>
+            <i class="fa-solid fa-person"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
+    {% endblock %}
+
+    </section>
+    <h2>{{evenement.libelle}}</h2>
+    <section id="middle-page">
+        
+
+        <div id="card-event">
+
+            <div id="top-card">
+
+            </div>
+            <div class="middle-card">
+                <h2>{{evenement.description}}</h2>
+                <div id="explication">
+
+                </div>
+
+
+            </div>
+            <div class="bottom-card">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="bottom-page">
+
+    </section>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/javascript/game.js') }}"></script>
+{% endblock %}
