@@ -20,7 +20,7 @@ class ChoixController extends AbstractController
         $partie->setScore($partie->getScore + 1);
 
 
-        return $this->render('choix/index.html.twig', [
+        return $this->render('explication/index.html.twig', [
             "explication" => $explication,
 
         ]);
