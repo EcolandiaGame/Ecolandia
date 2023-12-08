@@ -39,7 +39,8 @@ class EvenementController extends AbstractController
         return $this->render('ecolandia/game.html.twig', [
             'evenement' => $evenement,
             'stats' => $statistiqueRepository->findByPartie($partie),
-            'choix' => $choixRepository->getByUser($evenement)
+            'choix' => $choixRepository->getByEvent($evenement),
+            'partie' => $partie
         ]);
     }
 
