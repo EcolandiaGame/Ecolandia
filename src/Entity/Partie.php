@@ -36,6 +36,11 @@ class Partie
         $this->statistiques = new ArrayCollection();
     }
 
+    public function __toString(): string
+    {
+        return $this->score;
+    }
+
     public function getId(): ?int
     {
         return $this->id;
