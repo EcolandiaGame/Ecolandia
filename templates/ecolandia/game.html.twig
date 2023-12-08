@@ -10,25 +10,8 @@
 
         </div>
 
-
-
-        <div id="stat-div">
-
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-
-        </div>
-
+    {% block stat%}
+    {% endblock %}
 
     </section>
     <section id="middle-page">
@@ -39,7 +22,7 @@
 
             </div>
             <div class="middle-card">
-                <h2>context</h2>
+                <h2>{{stats[0].points}}</h2>
                 <div id="explication">
 
                 </div>

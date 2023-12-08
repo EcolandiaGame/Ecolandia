@@ -21,12 +21,13 @@ class EvenementRepository extends ServiceEntityRepository
         parent::__construct($registry, Evenement::class);
     }
 
-    public function getMinId(){
+    public function getMinId()
+    {
         return $this->createQueryBuilder('e')
          ->orderBy('e.id', 'ASC')
          ->setMaxResults(1)
          ->getQuery()
-         ->getResult();
+         ->getOneOrNullResult();
     }
 
     public function getMaxId(){
@@ -34,7 +35,7 @@ class EvenementRepository extends ServiceEntityRepository
          ->orderBy('e.id', 'DESC')
          ->setMaxResults(1)
          ->getQuery()
-         ->getResult();
+         ->getOneOrNullResult();
     }
 
 
