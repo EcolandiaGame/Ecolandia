@@ -31,6 +31,14 @@ class PartieRepository extends ServiceEntityRepository
             ->getResult();
     }
 
+    public  function getByLastId(){
+        return $this->createQueryBuilder('p')
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
 
 
 //    /**
