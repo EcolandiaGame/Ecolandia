@@ -35,11 +35,13 @@ class ChoixController extends AbstractController
         $partie[0]->setScore($partie[0]->getScore() + 1);
 
         $stats = $statistiqueRepository->findByPartie($partie);
+        $influe = $influeRepository->getByChoix($choixRepository->findOneById($nbr))[0];
 
         for($i=0;$i<3;$i++){
-            $stats[$i]->setPoints($stats[$i]->getPoints() + $influeRepository->getByChoix($choixRepository->findOneById($nbr))[0]->getChangePoints());
+            $stats[$i]->setPoints($stats[$i]->getPoints() + $influe->getChangePoints());
             
         }
+
 
         $entityManager->flush();
 
@@ -48,7 +50,7 @@ class ChoixController extends AbstractController
 
         return $this->render('explication/index.html.twig', [
             "explication" => $explication,
-
+            "influe" => $influe,
         ]);
     }
 }
