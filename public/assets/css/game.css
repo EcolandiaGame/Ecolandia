@@ -17,7 +17,9 @@
 #middle-page{
     width: 100%;
     height: 60vh;
-    background-color: yellow;
+    background-image: url(../images/FondEcolandia.webp);
+    background-size: cover;
+    background-position: center;
     display: flex;
     justify-content: center;
     align-items: center;

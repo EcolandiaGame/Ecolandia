@@ -1,0 +1,76 @@
+{% extends 'base.html.twig' %}
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('assets/css/game.css') }}" />
+
+{% endblock %}
+
+
+{% block body %}
+    <section id="top-page">
+        <h2>Année : 0</h2>
+
+    {% block stat %}
+    <div class="stats" id="economie" data-pourcentage=50>
+            <i class="fa-solid fa-euro-sign"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+
+        </div>
+            <div class="stats" id="ecologie" data-pourcentage=50>
+            <i class="fa-solid fa-leaf"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
+        <div class="stats" id="social" data-pourcentage=50>
+            <i class="fa-solid fa-person"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
+    {% endblock %}
+
+    </section>
+
+    <section id="middle-page">
+        
+
+        <div id="card-event">
+
+            <div id="top-card">
+
+            </div>
+            <div class="middle-card">
+                <h2>Les choix seront présentés ici</h2>
+                <a href="{{ path('app_game') }}">Commencer<a>
+                <div id="explication">
+
+                </div>
+
+
+            </div>
+            <div class="bottom-card">
+
+            </div>
+
+        </div>
+
+    </section>
+
+    <section id="bottom-page">
+
+        <button>
+            <a href="#">Le 1er choix sera présent ici</a>
+        </button>
+
+        <button>
+            <a href="#">Le 2ème choix sera présent ici</a>
+        </button>
+
+    </section>
+
+
+
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/javascript/game.js') }}"></script>
+{% endblock %}

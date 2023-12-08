@@ -20,10 +20,34 @@ class EcolandiaController extends AbstractController
         );
     }
 
-    #[Route('/ecolandia/game', name: 'app_game')]
-    public function game(): Response
+    public function __construct(
+        private Security $security,
+    ){
+    }
+
+    #[Route('/ecolandia/newgame', name: 'app_newgame')]
+    public function game(Utilisateur $utilisateur, EntityManagerInterface $entityManager, NomStatistiqueRepository $nomStatistiqueRepository): Response
     {
-        return $this->render('ecolandia/game.html.twig',
+        $partie = new Partie();
+        $partie->setUtilisateur($this->security->getUser());
+        $partie->setDatePartie(new \DateTime('now'));
+        $partie->setScore(0);
+        
+        $entityManager->persist($partie);
+        $entityManager->flush();
+
+        for ($i=1; $i<4; $i++){
+            $stats = new Statistique;
+            $stats->setSeNomme($nomStatistiqueRepository->findOneById($i));
+            $stats->setPartie($partie);
+            $stats->setPoints(5);
+
+            $entityManager->persist($stats);
+            $entityManager->flush();
+        }
+        
+
+        return $this->render('ecolandia/newgame.html.twig',
         );
     }
 
