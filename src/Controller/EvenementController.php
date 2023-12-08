@@ -34,6 +34,7 @@ class EvenementController extends AbstractController
         $user = $this->security->getUser();
         $partie = $partieRepository->getByUser($user);
         $evenement = $evenementRepository->find($id);
+
         
 
         return $this->render('ecolandia/game.html.twig', [
