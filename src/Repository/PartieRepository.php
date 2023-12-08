@@ -21,6 +21,16 @@ class PartieRepository extends ServiceEntityRepository
         parent::__construct($registry, Partie::class);
     }
 
+    public function getByUser($utilisateur){
+        return $this->createQueryBuilder('p')
+            ->andWhere('p.utilisateur = :utilisateur')
+            ->setParameter('utilisateur', $utilisateur)
+            ->orderBy('p.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getResult();
+    }
+
 
 //    /**
 //     * @return Partie[] Returns an array of Partie objects

@@ -13,16 +13,10 @@
             <div class="barre_vide"></div>
 
         </div>
-        <div class="stats" id="ecologie" data-pourcentage="100">
-            <i class="fa-solid fa-leaf"></i>
-            <div class="barre"></div>
-            <div class="barre_vide"></div>
-        </div>
-        <div class="stats" id="social" data-pourcentage="100">
-            <i class="fa-solid fa-person"></i>
-            <div class="barre"></div>
-            <div class="barre_vide"></div>
-        </div>
+
+    {% block stat%}
+    {% endblock %}
+
     </section>
     <section id="middle-page">
 
@@ -32,7 +26,7 @@
 
             </div>
             <div class="middle-card">
-                <h2>context</h2>
+                <h2>{{stats[0].points}}</h2>
                 <div id="explication">
 
                 </div>
