@@ -11,20 +11,38 @@
         text-align: left;
     }
     #titre{
-        margin-left:40%;
+        margin-left:28%;
+    }
+    button{
+        list-style: none;
+        margin-top: 10%;
+        margin-right: 10%;
+    }
+    body{
+        background-image: url("assets/images/FondEcolandia.webp");
+
+        background-size: cover;
+        background-repeat: no-repeat;    
+    }
+    #para{
+        style=text-align:center;
+        background-color:  white;
+        opacity: 0.6;
     }
 </style>
 
-<div id="header" class="flex">
-    <ul id="ul-login" class="flex">
-        <li> <a href=" {{ path('app_login') }} "> login </a> </li> 
-        <li> <a href=" {{ path('app_register') }} " > register </a> </li>  
-    </ul>
-    <div id="titre">
-        <h1> Ecolandia </h1>
+<div class="container">
+    <div id="header" class="flex">
+        <ul id="ul-login" class="flex">
+            <button> <a href=" {{ path('app_login') }} "> login </a> </button> 
+            <button> <a href=" {{ path('app_register') }} " > register </a> </button>  
+        </ul>
+        <div id="titre">
+            <h1 style="color:white;"> Ecolandia </h1>
+        </div>
     </div>
+    <p id="para"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
+    <a role="button" aria-pressed="true" class="btn btn-secondary btn-lg active" href="{{ path('app_jouer') }}"> Jouer </a>
 </div>
-<p style="text-align:center;"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-<a role="button" aria-pressed="true" class="btn btn-secondary btn-lg active" href="{{ path('app_jouer') }}"> Jouer </a>
 {% endblock %}
  
