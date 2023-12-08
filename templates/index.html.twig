@@ -25,13 +25,65 @@
         background-repeat: no-repeat;    
     }
     #para{
-        style=text-align:center;
+        text-align:center;
         background-color:  white;
         opacity: 0.6;
+        font-size:40px;
     }
+        .btn-16 {
+        background-color:#fff;
+        border: none;
+        color: #000;
+        }
+    .btn-16:after {
+        position: absolute;
+        content: "";
+        width: 0;
+        height: 100%;
+        top: 0;
+        left: 0;
+        direction: rtl;
+        box-shadow:
+        -7px -7px 20px 0px #fff9,
+        -4px -4px 5px 0px #fff9,
+        7px 7px 20px 0px #0002,
+        4px 4px 5px 0px #0001;
+        transition: all 0.3s ease;
+    }
+    .btn-16:hover {
+        color: #000;
+    }
+    .btn-16:hover:after {
+        left: auto;
+        right: 0;
+        width: 100%;
+    }
+    .btn-16:active {
+        top: 2px;
+    }
+    .custom-btn {
+        font-family: cursive;
+        width: 130px;
+        height: 40px;
+        color: #000;
+        border-radius: 5px;
+        padding: 10px 25px;
+        font-family: cursive;
+        font-weight: 500;
+        background: #e0e5ec;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        box-shadow:inset 2px 2px 2px 0px rgba(255,255,255,.5),
+        7px 7px 20px 0px rgba(0,0,0,.1),
+        4px 4px 5px 0px rgba(0,0,0,.1);
+        outline: none;
+        }
 </style>
 
 <div class="container">
+
     <div id="header" class="flex">
         <ul id="ul-login" class="flex">
             <button> <a href=" {{ path('app_login') }} "> login </a> </button> 
@@ -41,8 +93,10 @@
             <h1 style="color:white;"> Ecolandia </h1>
         </div>
     </div>
-    <p id="para"> Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum. </p>
-    <a role="button" aria-pressed="true" class="btn btn-secondary btn-lg active" href="{{ path('app_jouer') }}"> Jouer </a>
+    <p id="para"> Ecolandia est une terre dont vous êtes le roi, vous allez être confronté à des series de décisions qui vont résulter à différentes conséquences.
+    Vous allez devoir jongler entre une économie stable, un peuple heureux et un écologie irréprochable. Si l'un de ses trois piliers fait defaut à votre royaume, votre reigne prendra fin et votre partie sera donc terminée.
+    </p>
+    <a style="margin-left:40%; margin-top: 150px; width:200px; height: 50px;" role="button" aria-pressed="true" class="custom-btn btn-16 btn active" href="{{ path('app_game') }}"> JOUER </a>
 </div>
 {% endblock %}
  
