@@ -3,33 +3,26 @@
     <link rel="stylesheet" href="{{ asset('assets/css/game.css') }}" />
 
 {% endblock %}
+
+
 {% block body %}
     <section id="top-page">
-        <div id="left-logo">
-            <img src="{{ asset('assets/images/Ecolandia.png') }}" alt="logo">
+        <div class="stats" id="economie" data-pourcentage="75">
+            <i class="fa-solid fa-euro-sign"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
 
         </div>
-
-
-
-        <div id="stat-div">
-
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-            <div class="stats">
-                <h1>test</h1>
-
-            </div>
-
+        <div class="stats" id="ecologie" data-pourcentage="100">
+            <i class="fa-solid fa-leaf"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
         </div>
-
-
+        <div class="stats" id="social" data-pourcentage="100">
+            <i class="fa-solid fa-person"></i>
+            <div class="barre"></div>
+            <div class="barre_vide"></div>
+        </div>
     </section>
     <section id="middle-page">
 
@@ -60,4 +53,8 @@
 
 
 
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('assets/javascript/game.js') }}"></script>
 {% endblock %}
