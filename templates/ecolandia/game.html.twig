@@ -29,8 +29,9 @@
     {% endblock %}
 
     </section>
-    <h2>{{evenement.libelle}}</h2>
+
     <section id="middle-page">
+        <h2>{{evenement.libelle}}</h2>
         
 
         <div id="card-event">
@@ -55,6 +56,14 @@
     </section>
 
     <section id="bottom-page">
+
+        <button>
+            <a href="{{path('app_game')}}">Choix 1</a>
+        </button>
+
+        <button>
+            <a href="{{path('app_game')}}">Choix 2</a>
+        </button>
 
     </section>
 
