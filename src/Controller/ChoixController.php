@@ -14,7 +14,8 @@ class ChoixController extends AbstractController
     #[Route('/explication/{nbr}', name: 'app_explication')]
     public function index(int $nbr , ChoixRepository $choixRepository, ExplicationRepository $explicationRepository): Response
     {
-         $explication = $choixRepository->findExplication($nbr);
+         $choix = $choixRepository->findBy(['id' => $nbr]);
+         $explication = $choix[0]->getExplication();
 
 
         return $this->render('explication/index.html.twig', [
