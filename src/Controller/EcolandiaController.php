@@ -68,7 +68,7 @@ class EcolandiaController extends AbstractController
 
 
         $session = $this->requestStack->getSession();
-        $session->set('indiceevent', 0);
+        $session->set('indiceevent', 1);
         $indice = $session->get('indiceevent');
 
 
